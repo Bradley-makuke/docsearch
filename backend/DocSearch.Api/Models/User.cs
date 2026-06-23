@@ -1,6 +1,6 @@
 ﻿namespace DocSearch.Api.Models;
 
-public class Users
+public class User
 {
     public Guid Id { get; set; }
     public string FirstName { get; set;}
