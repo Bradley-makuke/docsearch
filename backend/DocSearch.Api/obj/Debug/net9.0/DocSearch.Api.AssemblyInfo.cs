@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DocSearch.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8be71e3f84d3ebdf9592edf4865f1c895b10b733")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e6871cdcfad60f682cc914343571c7ea4d54a2f")]
 [assembly: System.Reflection.AssemblyProductAttribute("DocSearch.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DocSearch.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

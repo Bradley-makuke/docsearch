@@ -29,6 +29,7 @@ namespace DocSearch.Api.Controllers
             }
             // code to compare the user from the request and the one from the db, then call db function to make changes in the db. then send a response to FE
 
+            // I am lazy to write code today
                 return View(user); 
         }
     }
