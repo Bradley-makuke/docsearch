@@ -1,0 +1,89 @@
+services:
+  api-dev:
+    build:
+      context: ../
+      dockerfile: infrastructure/docker/api/Dockerfile
+    container_name: api-dev
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8081
+      - ConnectionStrings__MySQL=${MYSQL_CONNECTION_DEV}
+      - ConnectionStrings__MongoDB=${MONGO_CONNECTION_DEV}
+      - ConnectionStrings__Redis=redis-dev:6379
+      - OpenSearch__Url=http://opensearch-dev:9200
+    depends_on:
+      - mysql-dev
+      - mongodb-dev
+      - redis-dev
+      - opensearch-dev
+    networks:
+      - dev-net
+    ports:
+      - "8081:8081"
+
+  frontend-dev:
+    build:
+      context: ../
+      dockerfile: infrastructure/docker/frontend/Dockerfile
+      args:
+        VITE_API_URL: /dev/api
+    container_name: frontend-dev
+    restart: unless-stopped
+    networks:
+      - dev-net
+    ports:
+      - "3001:80"
+
+  mysql-dev:
+    image: mysql:8.0
+    container_name: mysql-dev
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD_DEV}
+      MYSQL_DATABASE: searchengine_dev
+    volumes:
+      - mysql_dev_data:/var/lib/mysql
+    networks:
+      - dev-net
+
+  mongodb-dev:
+    image: mongo:7
+    container_name: mongodb-dev
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER_DEV}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD_DEV}
+    volumes:
+      - mongo_dev_data:/data/db
+    networks:
+      - dev-net
+
+  redis-dev:
+    image: redis:7-alpine
+    container_name: redis-dev
+    restart: unless-stopped
+    networks:
+      - dev-net
+
+  opensearch-dev:
+    image: opensearchproject/opensearch:2.13.0
+    container_name: opensearch-dev
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - DISABLE_SECURITY_PLUGIN=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms256m -Xmx256m"
+    volumes:
+      - opensearch_dev_data:/usr/share/opensearch/data
+    networks:
+      - dev-net
+
+networks:
+  dev-net:
+    driver: bridge
+
+volumes:
+  mysql_dev_data:
+  mongo_dev_data:
+  opensearch_dev_data:
