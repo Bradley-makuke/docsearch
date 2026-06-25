@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "2EtD/0++N8I=",
+  "success": true,
+  "projectFilePath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Api\\DocSearch.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\BRADLEY_MAKUKE\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.9\\microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
+    "C:\\Users\\BRADLEY_MAKUKE\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

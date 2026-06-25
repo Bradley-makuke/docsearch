@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DocSearch.Core\DocSearch.Core.csproj" />
+    <ProjectReference Include="..\DocSearch.Infrastructure\DocSearch.Infrastructure.csproj" />
+    <ProjectReference Include="..\DocSearch.Search\DocSearch.Search.csproj" />
+    <ProjectReference Include="..\DocSearch.Documents\DocSearch.Documents.csproj" />
+  </ItemGroup>
+
+</Project>
