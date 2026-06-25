@@ -1,0 +1,92 @@
+services:
+  api-prod:
+    build:
+      context: ../
+      dockerfile: infrastructure/docker/api/Dockerfile
+    container_name: api-prod
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__MySQL=${MYSQL_CONNECTION_PROD}
+      - ConnectionStrings__MongoDB=${MONGO_CONNECTION_PROD}
+      - ConnectionStrings__Redis=redis-prod:6379
+      - OpenSearch__Url=http://opensearch-prod:9200
+    depends_on:
+      - mysql-prod
+      - mongodb-prod
+      - redis-prod
+      - opensearch-prod
+    networks:
+      - prod-net
+    ports:
+      - "8080:8080"
+
+  frontend-prod:
+    build:
+      context: ../
+      dockerfile: infrastructure/docker/frontend/Dockerfile
+      args:
+        VITE_API_URL: /api
+    container_name: frontend-prod
+    restart: unless-stopped
+    networks:
+      - prod-net
+    ports:
+      - "3000:80"
+
+  mysql-prod:
+    image: mysql:8.0
+    container_name: mysql-prod
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD_PROD}
+      MYSQL_DATABASE: searchengine
+    volumes:
+      - mysql_prod_data:/var/lib/mysql
+    networks:
+      - prod-net
+
+  mongodb-prod:
+    image: mongo:7
+    container_name: mongodb-prod
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER_PROD}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD_PROD}
+    volumes:
+      - mongo_prod_data:/data/db
+    networks:
+      - prod-net
+
+  redis-prod:
+    image: redis:7-alpine
+    container_name: redis-prod
+    restart: unless-stopped
+    volumes:
+      - redis_prod_data:/data
+    networks:
+      - prod-net
+
+  opensearch-prod:
+    image: opensearchproject/opensearch:2.13.0
+    container_name: opensearch-prod
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - DISABLE_SECURITY_PLUGIN=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - opensearch_prod_data:/usr/share/opensearch/data
+    networks:
+      - prod-net
+
+networks:
+  prod-net:
+    driver: bridge
+
+volumes:
+  mysql_prod_data:
+  mongo_prod_data:
+  redis_prod_data:
+  opensearch_prod_data:
