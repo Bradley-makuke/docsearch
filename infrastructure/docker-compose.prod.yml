@@ -1,15 +1,13 @@
 services:
   api-prod:
-    build:
-      context: ../
-      dockerfile: infrastructure/docker/api/Dockerfile
+    image: ghcr.io/Bradley-makuke/docsearch-api:latest
     container_name: api-prod
     restart: unless-stopped
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:8080
-      - ConnectionStrings__MySQL=${MYSQL_CONNECTION_PROD}
-      - ConnectionStrings__MongoDB=${MONGO_CONNECTION_PROD}
+      - ConnectionStrings__MySQL=Server=mysql-prod;Database=docsearch;Uid=root;Pwd=${MYSQL_ROOT_PASSWORD_PROD};
+      - ConnectionStrings__MongoDB=mongodb://${MONGO_USER_PROD}:${MONGO_PASSWORD_PROD}@mongodb-prod:27017
       - ConnectionStrings__Redis=redis-prod:6379
       - OpenSearch__Url=http://opensearch-prod:9200
     depends_on:
@@ -23,11 +21,7 @@ services:
       - "8080:8080"
 
   frontend-prod:
-    build:
-      context: ../
-      dockerfile: infrastructure/docker/frontend/Dockerfile
-      args:
-        VITE_API_URL: /api
+    image: ghcr.io/Bradley-makuke/docsearch-frontend:latest
     container_name: frontend-prod
     restart: unless-stopped
     networks:
@@ -41,7 +35,7 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD_PROD}
-      MYSQL_DATABASE: searchengine
+      MYSQL_DATABASE: docsearch
     volumes:
       - mysql_prod_data:/var/lib/mysql
     networks:
@@ -76,6 +70,13 @@ services:
       - discovery.type=single-node
       - DISABLE_SECURITY_PLUGIN=true
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
     volumes:
       - opensearch_prod_data:/usr/share/opensearch/data
     networks:

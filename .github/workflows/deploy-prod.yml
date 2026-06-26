@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
 
+env:
+  REGISTRY: ghcr.io
+  GITHUB_USERNAME: ${{ github.repository_owner }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -14,31 +18,54 @@ jobs:
           dotnet-version: "8.x"
       - run: dotnet restore backend/DocSearch.sln
       - run: dotnet build backend/DocSearch.sln --no-restore
-      - run: |
-          dotnet test backend/DocSearch.sln \
-            --no-build \
-            --filter "Category!=Integration"
+      - run: dotnet test backend/DocSearch.sln --no-build --filter "Category!=Integration"
 
-  deploy:
+  build-and-push:
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
-      - name: Deploy to VPS
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Build and push API image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: infrastructure/docker/api/Dockerfile
+          push: true
+          tags: ghcr.io/${{ env.GITHUB_USERNAME }}/docsearch-api:latest
+
+      - name: Build and push Frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: infrastructure/docker/frontend/Dockerfile
+          push: true
+          tags: ghcr.io/${{ env.GITHUB_USERNAME }}/docsearch-frontend:latest
+          build-args: |
+            VITE_API_URL=/api
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH and deploy on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          envs: >
-            MYSQL_CONNECTION,
-            MYSQL_ROOT_PASSWORD,
-            MONGO_USER,
-            MONGO_PASSWORD,
-            MONGO_CONNECTION
           script: |
-            export MYSQL_CONNECTION="${{ secrets.MYSQL_CONNECTION_PROD }}"
             export MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD_PROD }}"
             export MONGO_USER="${{ secrets.MONGO_USER_PROD }}"
             export MONGO_PASSWORD="${{ secrets.MONGO_PASSWORD_PROD }}"
-            export MONGO_CONNECTION="${{ secrets.MONGO_CONNECTION_PROD }}"
             bash /home/deploy/docsearch/infrastructure/scripts/deploy.sh prod

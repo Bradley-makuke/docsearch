@@ -1,15 +1,13 @@
 services:
   api-dev:
-    build:
-      context: ../
-      dockerfile: infrastructure/docker/api/Dockerfile
+    image: ghcr.io/Bradley-makuke/docsearch-api:dev
     container_name: api-dev
     restart: unless-stopped
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:8081
-      - ConnectionStrings__MySQL=${MYSQL_CONNECTION_DEV}
-      - ConnectionStrings__MongoDB=${MONGO_CONNECTION_DEV}
+      - ConnectionStrings__MySQL=Server=mysql-dev;Database=docsearch_dev;Uid=root;Pwd=${MYSQL_ROOT_PASSWORD_DEV};
+      - ConnectionStrings__MongoDB=mongodb://${MONGO_USER_DEV}:${MONGO_PASSWORD_DEV}@mongodb-dev:27017
       - ConnectionStrings__Redis=redis-dev:6379
       - OpenSearch__Url=http://opensearch-dev:9200
     depends_on:
@@ -23,11 +21,7 @@ services:
       - "8081:8081"
 
   frontend-dev:
-    build:
-      context: ../
-      dockerfile: infrastructure/docker/frontend/Dockerfile
-      args:
-        VITE_API_URL: /dev/api
+    image: ghcr.io/Bradley-makuke/docsearch-frontend:dev
     container_name: frontend-dev
     restart: unless-stopped
     networks:
@@ -41,7 +35,7 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD_DEV}
-      MYSQL_DATABASE: searchengine_dev
+      MYSQL_DATABASE: docsearch_dev
     volumes:
       - mysql_dev_data:/var/lib/mysql
     networks:
