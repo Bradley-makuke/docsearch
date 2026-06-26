@@ -6,7 +6,7 @@ COPY backend/DocSearch.sln ./
 COPY backend/src/ ./src/
 COPY backend/tests/ ./tests/
 
-RUN dotnet restore SearchEngine.sln
+RUN dotnet restore DocSearch.sln
 
 # Build and publish only the API project
 RUN dotnet publish src/DocSearch.Api/DocSearch.Api.csproj \
