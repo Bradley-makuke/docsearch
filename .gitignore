@@ -1,2 +1,2 @@
 ## these are folders i want to not track.
-/backend/src/DocSearch.Api/.vs
+/backend/.vs
