@@ -1,6 +1,6 @@
 services:
   api-prod:
-    image: ghcr.io/Bradley-makuke/docsearch-api:latest
+    image: ghcr.io/bradley-makuke/docsearch-api:latest
     container_name: api-prod
     restart: unless-stopped
     environment:
@@ -21,7 +21,7 @@ services:
       - "8080:8080"
 
   frontend-prod:
-    image: ghcr.io/Bradley-makuke/docsearch-frontend:latest
+    image: ghcr.io/bradley-makuke/docsearch-frontend:latest
     container_name: frontend-prod
     restart: unless-stopped
     networks:

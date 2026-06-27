@@ -1,6 +1,6 @@
 services:
   api-dev:
-    image: ghcr.io/Bradley-makuke/docsearch-api:dev
+    image: ghcr.io/bradley-makuke/docsearch-api:dev
     container_name: api-dev
     restart: unless-stopped
     environment:
@@ -21,7 +21,7 @@ services:
       - "8081:8081"
 
   frontend-dev:
-    image: ghcr.io/Bradley-makuke/docsearch-frontend:dev
+    image: ghcr.io/bradley-makuke/docsearch-frontend:dev
     container_name: frontend-dev
     restart: unless-stopped
     networks:

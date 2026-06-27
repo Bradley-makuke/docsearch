@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  GITHUB_USERNAME: ${{ github.repository_owner }}
+  GITHUB_USERNAME: ${{ bradley-makuke }}
 
 jobs:
   test:
