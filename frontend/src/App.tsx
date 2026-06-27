@@ -1,5 +1,6 @@
+import SearchHome from "./SearchHome";
 function App(){
-  return <h1>Hello World</h1>;
+  return <SearchHome/>;
 }
 
 export default App;
