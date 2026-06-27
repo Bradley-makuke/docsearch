@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.x"
+          dotnet-version: "9.x"
       - run: dotnet restore backend/DocSearch.sln
       - run: dotnet build backend/DocSearch.sln --no-restore
       - run: dotnet test backend/DocSearch.sln --no-build --filter "Category!=Integration"
