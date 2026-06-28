@@ -13,13 +13,12 @@ export default function SearchHome() {
         });
         const data = await res.text();
         setHealth(data);
-
     };
     return (
         <>
-        <header>
+        <header className="site-header">
             <img src={logo} alt="Docsearch Logo" />
-            <nav>
+            <nav className="site-nav">
                 <div className="userprofile-container">
                     < div className="userprofile">
                         <div className="userprofile-image">
@@ -30,10 +29,10 @@ export default function SearchHome() {
                 </div>
             </nav>
         </header>
-        <body>
+        <main className="main-content">
            <button onClick={getHealth}>Test api</button>
            {health && <div>{health}</div>}
-            </body>
+            </main>
         </>
     );
     
