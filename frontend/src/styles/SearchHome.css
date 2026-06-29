@@ -42,8 +42,29 @@
     top: 28vh;
     left:0;
     box-sizing: border-box;
+    flex-direction: column;
 }
 
-.userprofile-container{
-
+.site-header img{
+    width: 200px;
+    height: 200px;
+}
+.intro-title {
+    font-weight: 800;
+    font-size: 60px;
+    color: plum;
+    position: relative;
+    top:-80px
+}
+.search-container {
+    width: 600px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px#f5f5f5 solid;
+}
+.search-input {
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    margin-right: 270px;
 }
