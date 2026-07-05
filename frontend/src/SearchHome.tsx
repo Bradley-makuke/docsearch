@@ -4,11 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faMicrophone, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import logo from "./assets/docsearch.svg";
 import scan from "./assets/scan-icon.svg";
+import profile from "./assets/default-profile.svg";
 import "./styles/SearchHome.css";
 export default function SearchHome() {
     const navigate = useNavigate();
     const [health, setHealth] = useState("");
     const [search, setSearch] = useState("");
+    const [showSoundModal, setshowSoundModal] = useState(false);
+    const [showScanModal, setShowScanModal] = useState(false);
     const getHealth = async () => {
         const res = await fetch("http://localhost:5250/api/search/health",{
             method: "GET",
@@ -39,7 +42,7 @@ export default function SearchHome() {
                 <div className="userprofile-container">
                     < div className="userprofile">
                         <div className="userprofile-image">
-                            <img src="https://via.placeholder.com/150" alt="User Profile" />
+                            <img className="userprofile-img" src={profile} alt="User Profile" />
                         </div>
                         <div className="userprofile-name">John Doe</div>
                         <FontAwesomeIcon icon={faAngleDown} className="dropdown-icon" />
@@ -48,20 +51,55 @@ export default function SearchHome() {
             </nav>
         </header>
         <main className="main-content">
-           <h1 className="intro-title">Welcome to DocSearch !</h1>
-           <form className="search-container" onSubmit={(e) => {
-                e.preventDefault();
-                getSearchResults();
+            {!showSoundModal && !showScanModal && (
+                <>
+                    <h1 className="intro-title">Welcome to DocSearch !</h1>
+                    <form className="search-container" onSubmit={(e) => {
+                        e.preventDefault();
+                        getSearchResults();
             }}>
             <FontAwesomeIcon icon={faSearch} className="search-icon" />
             <input placeholder="type in your search" 
                 type="search" className="search-input" 
             />
             <div className="actions">
-                <FontAwesomeIcon icon={faMicrophone}  className="microphone-icon"/>
-                <img src={scan} alt="Scan Icon" className="scan-icon" />
+                <FontAwesomeIcon icon={faMicrophone}  className="microphone-icon" onClick={() => setshowSoundModal(true)}/>
+                <img src={scan} alt="Scan Icon" className="scan-icon" onClick={() => setShowScanModal(true)} />
             </div>
            </form>
+           </>
+        )}
+        {showSoundModal && (
+            <div className="record-modal">
+                <div className="bars">
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                </div>
+                <div className="recording-text">Listening.......</div>
+                <button className="stop-button" onClick={() => setshowSoundModal(false)}>X</button>
+                </div>
+        )}
+        {showScanModal && (
+            <div className="modal scan-modal">
+                <h2>Search with lens</h2>
+                <div className="upload-box">
+                    <p>Drag image or <span className="highlight">browse</span></p>
+                </div>
+                <p>Or</p>
+                <input
+                    type="text"
+                    placeholder="Paste image link here"
+                    className="link-input"
+                />
+                <button className="stop-button-2" onClick={() => setShowScanModal(false)}>X</button>
+            </div>
+        )}
         </main></>
     );
     
