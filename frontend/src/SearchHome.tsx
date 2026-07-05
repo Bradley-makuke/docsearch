@@ -1,10 +1,14 @@
 import { useState } from "react";
-import logo from "./assets/docsearch-logo.png";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faMicrophone, faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import logo from "./assets/docsearch.svg";
+import scan from "./assets/scan-icon.svg";
 import "./styles/SearchHome.css";
 export default function SearchHome() {
-
+    const navigate = useNavigate();
     const [health, setHealth] = useState("");
-    const [search, setSearch] = useState(null);
+    const [search, setSearch] = useState("");
     const getHealth = async () => {
         const res = await fetch("http://localhost:5250/api/search/health",{
             method: "GET",
@@ -22,8 +26,10 @@ export default function SearchHome() {
                 "Content-Type": "application/json"
             }
         });
-        const searchData = await response.json();
+        const searchData = await response.text();
         setSearch(searchData);
+
+        navigate("/results", { state: { searchData } });
     };
     return (
         <>
@@ -36,15 +42,25 @@ export default function SearchHome() {
                             <img src="https://via.placeholder.com/150" alt="User Profile" />
                         </div>
                         <div className="userprofile-name">John Doe</div>
+                        <FontAwesomeIcon icon={faAngleDown} className="dropdown-icon" />
                     </div>
                 </div>
             </nav>
         </header>
         <main className="main-content">
-           <h1 className="intro-title">Welcome to DocSearch!!!</h1>
-           <form className="search-container">
-            <input placeholder="type in your search" type="search" className="search-input"></input>
-            <button  className="search-icon">Send</button>
+           <h1 className="intro-title">Welcome to DocSearch !</h1>
+           <form className="search-container" onSubmit={(e) => {
+                e.preventDefault();
+                getSearchResults();
+            }}>
+            <FontAwesomeIcon icon={faSearch} className="search-icon" />
+            <input placeholder="type in your search" 
+                type="search" className="search-input" 
+            />
+            <div className="actions">
+                <FontAwesomeIcon icon={faMicrophone}  className="microphone-icon"/>
+                <img src={scan} alt="Scan Icon" className="scan-icon" />
+            </div>
            </form>
         </main></>
     );
