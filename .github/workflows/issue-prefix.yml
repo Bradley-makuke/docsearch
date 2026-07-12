@@ -1,0 +1,36 @@
+name: Auto-Prefix Issue Titles
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  prefix-title:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write # Grants the action permission to rename titles
+
+    steps:
+      - name: Format Number and Update Title
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.payload.issue.number;
+            const currentTitle = context.payload.issue.title;
+            const prefix = "DS";
+
+            // Pads the number to 3 digits (e.g., 5 becomes 005)
+            const paddedNumber = String(issueNumber).padStart(3, '0');
+            const customId = `${prefix}-${paddedNumber}`;
+
+            // Check to avoid infinite loops if it already has the prefix
+            if (!currentTitle.startsWith(prefix + "-")) {
+              const newTitle = `${customId}: ${currentTitle}`;
+              
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                title: newTitle
+              });
+            }
