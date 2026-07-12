@@ -1,0 +1,12 @@
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\bin\Debug\net9.0\DocSearch.Core.deps.json
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\bin\Debug\net9.0\DocSearch.Core.dll
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\bin\Debug\net9.0\DocSearch.Core.pdb
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\obj\Debug\net9.0\DocSearch.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\obj\Debug\net9.0\DocSearch.Core.AssemblyInfoInputs.cache
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\obj\Debug\net9.0\DocSearch.Core.AssemblyInfo.cs
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\obj\Debug\net9.0\DocSearch.Core.csproj.CoreCompileInputs.cache
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\obj\Debug\net9.0\DocSearch.Core.sourcelink.json
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\obj\Debug\net9.0\DocSearch.Core.dll
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\obj\Debug\net9.0\refint\DocSearch.Core.dll
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\obj\Debug\net9.0\DocSearch.Core.pdb
+C:\WEB Dev\docsearch\backend\src\DocSearch.Core\obj\Debug\net9.0\ref\DocSearch.Core.dll

@@ -1,6 +1,6 @@
 @DocSearch.Api_HostAddress = http://localhost:5250
 
-GET {{DocSearch.Api_HostAddress}}/weatherforecast/
+GET {{DocSearch.Api_HostAddress}}/api/health/
 Accept: application/json
 
 ###

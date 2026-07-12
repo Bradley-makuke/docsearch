@@ -32,7 +32,20 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Core\\DocSearch.Core.csproj": {
+                "projectPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Core\\DocSearch.Core.csproj"
+              },
+              "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Documents\\DocSearch.Documents.csproj": {
+                "projectPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Documents\\DocSearch.Documents.csproj"
+              },
+              "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Infrastructure\\DocSearch.Infrastructure.csproj": {
+                "projectPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Infrastructure\\DocSearch.Infrastructure.csproj"
+              },
+              "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Search\\DocSearch.Search.csproj": {
+                "projectPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Search\\DocSearch.Search.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -51,9 +64,9 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
+            "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[10.2.3, )"
             }
           },
           "imports": [
@@ -71,6 +84,270 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Core\\DocSearch.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Core\\DocSearch.Core.csproj",
+        "projectName": "DocSearch.Core",
+        "projectPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Core\\DocSearch.Core.csproj",
+        "packagesPath": "C:\\Users\\BRADLEY_MAKUKE\\.nuget\\packages\\",
+        "outputPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\BRADLEY_MAKUKE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Documents\\DocSearch.Documents.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Documents\\DocSearch.Documents.csproj",
+        "projectName": "DocSearch.Documents",
+        "projectPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Documents\\DocSearch.Documents.csproj",
+        "packagesPath": "C:\\Users\\BRADLEY_MAKUKE\\.nuget\\packages\\",
+        "outputPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Documents\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\BRADLEY_MAKUKE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Infrastructure\\DocSearch.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Infrastructure\\DocSearch.Infrastructure.csproj",
+        "projectName": "DocSearch.Infrastructure",
+        "projectPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Infrastructure\\DocSearch.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\BRADLEY_MAKUKE\\.nuget\\packages\\",
+        "outputPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\BRADLEY_MAKUKE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Search\\DocSearch.Search.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Search\\DocSearch.Search.csproj",
+        "projectName": "DocSearch.Search",
+        "projectPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Search\\DocSearch.Search.csproj",
+        "packagesPath": "C:\\Users\\BRADLEY_MAKUKE\\.nuget\\packages\\",
+        "outputPath": "C:\\WEB Dev\\docsearch\\backend\\src\\DocSearch.Search\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\BRADLEY_MAKUKE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

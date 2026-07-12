@@ -1,0 +1,12 @@
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\bin\Debug\net9.0\DocSearch.Infrastructure.deps.json
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\bin\Debug\net9.0\DocSearch.Infrastructure.dll
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\bin\Debug\net9.0\DocSearch.Infrastructure.pdb
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\obj\Debug\net9.0\DocSearch.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\obj\Debug\net9.0\DocSearch.Infrastructure.AssemblyInfoInputs.cache
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\obj\Debug\net9.0\DocSearch.Infrastructure.AssemblyInfo.cs
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\obj\Debug\net9.0\DocSearch.Infrastructure.csproj.CoreCompileInputs.cache
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\obj\Debug\net9.0\DocSearch.Infrastructure.sourcelink.json
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\obj\Debug\net9.0\DocSearch.Infrastructure.dll
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\obj\Debug\net9.0\refint\DocSearch.Infrastructure.dll
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\obj\Debug\net9.0\DocSearch.Infrastructure.pdb
+C:\WEB Dev\docsearch\backend\src\DocSearch.Infrastructure\obj\Debug\net9.0\ref\DocSearch.Infrastructure.dll
