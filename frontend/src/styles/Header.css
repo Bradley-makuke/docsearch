@@ -1,0 +1,48 @@
+.site-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    height:28dvh;
+    width:100%;
+    position: fixed;
+    top: 0;
+    left:0;
+    box-sizing: border-box;
+    padding:10px 20px;
+}
+.site-nav{
+    display:flex;
+    align-items: center;
+    padding-right: 20px;
+    padding-top: -10px;
+    position: relative;
+    top: 10;
+}
+.userprofile {
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+}
+.userprofile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid grey;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+.userprofile-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-position: center 30%;
+    object-fit: cover;
+    display:block;
+}
+.site-header img{
+    width: 200px;
+    height: 200px;
+}

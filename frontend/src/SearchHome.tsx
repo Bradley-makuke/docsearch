@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faMicrophone, faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import logo from "./assets/docsearch.svg";
+import { faSearch, faMicrophone } from "@fortawesome/free-solid-svg-icons";
+import Header from "./components/Header";
 import scan from "./assets/scan-icon.svg";
-import profile from "./assets/default-profile.svg";
 import "./styles/SearchHome.css";
+
 export default function SearchHome() {
     const navigate = useNavigate();
     const [health, setHealth] = useState("");
@@ -36,20 +36,7 @@ export default function SearchHome() {
     };
     return (
         <>
-        <header className="site-header">
-            <img src={logo} alt="Docsearch Logo" />
-            <nav className="site-nav">
-                <div className="userprofile-container">
-                    < div className="userprofile">
-                        <div className="userprofile-image">
-                            <img className="userprofile-img" src={profile} alt="User Profile" />
-                        </div>
-                        <div className="userprofile-name">John Doe</div>
-                        <FontAwesomeIcon icon={faAngleDown} className="dropdown-icon" />
-                    </div>
-                </div>
-            </nav>
-        </header>
+        <Header/>
         <main className="main-content">
             {!showSoundModal && !showScanModal && (
                 <>
@@ -100,7 +87,8 @@ export default function SearchHome() {
                 <button className="stop-button-2" onClick={() => setShowScanModal(false)}>X</button>
             </div>
         )}
-        </main></>
+        </main>
+            </>
     );
     
 }
