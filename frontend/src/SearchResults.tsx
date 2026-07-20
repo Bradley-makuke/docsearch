@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import React, {useState, useEffect } from "react";
 import Header  from "./components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faMicrophone } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faMicrophone, faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import scan from "./assets/scan-icon.svg";
 import { mockSearchResults, type MockResult } from "./data/mockSearchResults";
 import "./styles/SearchResults.css";
@@ -21,6 +21,8 @@ export default function SearchResults() : JSX.Element {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [selectedTag, setSelectedTag] = useState< string| null>(null);
 
+    const [modalOpen, setModalOpen] = useState(false);
+    const [activeDoc, setActiveDoc] = useState<MockResult | null>(null);
     //Pagination 
     const pages = Array.from({ length: 10 }, (_, i) => i + 1);
     const currentPage = 1;
@@ -73,12 +75,49 @@ export default function SearchResults() : JSX.Element {
       setSelectedCategories([]);
       setSelectedTag(null);
     };
+
+    const openDocModal = (doc: MockResult) => {
+      setActiveDoc(doc);
+      setModalOpen(true);
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeModal = () => {
+      setModalOpen(false);
+      setActiveDoc(null);
+      document.body.style.overflow ="";
+    };
+
+    const downloadPdf = (doc: MockResult) => {
+      const blob = new Blob([doc.content], { type: "application/pdf" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = doc.pdfFileName || `${doc.title.replace(/\s+/g, "-").toLowerCase()}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    };
+
+    const viewInSource = (doc: MockResult) => {
+      if(doc.sourceUrl) {
+        window.open(doc.sourceUrl, "_blank", "noopener, noreferrer");
+      }
+    };
+
+    const openRelatedDoc = (id: number) => {
+      const doc = mockSearchResults.find((d) => d.id === id);
+      if(doc) {
+        setActiveDoc(doc);
+      }
+    };
     
 
   return (
     <>
     <Header/>
-    <form className="search-container" onSubmit={(e) => {
+    <form className="sr-search-container" onSubmit={(e) => {
                         e.preventDefault();
                         getSearchResults();
             }}
@@ -108,7 +147,7 @@ export default function SearchResults() : JSX.Element {
            </form>
     <main className="results-page">
       <div className="results-main">
-      <h2 className="results-stats">Search Results</h2>
+      <p className="results-stats">Results for “Intro to OOP”  (About 100 results. 0.4s)</p>
            {/* Results */}
            <div className="results-container">
             {results.length === 0 ? (
@@ -126,7 +165,7 @@ export default function SearchResults() : JSX.Element {
                   <span className="result-path">{item.path}</span>
                   <span className="result-category">- {item.category}</span>
                 </div>
-                <button className="view-btn" type="button">
+                <button className="view-btn" type="button" onClick={() => openDocModal(item)}>
                   View Document
                 </button>
               </div>
@@ -194,6 +233,76 @@ export default function SearchResults() : JSX.Element {
           </div>
       </aside>
     </main>
+    {/* Modal */}
+      {modalOpen && activeDoc && (
+        <div
+          className="doc-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          onClick={(e) => {
+            // close when clicking overlay (but not when clicking inside modal)
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div className="doc-modal">
+            <header className="doc-modal-header">
+              <button
+                className="back-btn"
+                onClick={closeModal}
+                aria-label="Back to results"
+              >
+                <FontAwesomeIcon icon={faArrowLeft} /> <span>Back</span>
+              </button>
+
+              <div className="doc-meta-top">
+                <h2 className="doc-title">{activeDoc.title}</h2>
+                <div className="doc-author">Michael Scott - September 2025</div>
+              </div>
+            </header>
+
+            <div className="doc-body">
+              <section className="doc-content">
+                {/* simple rendering of content; in real app you might sanitize/format HTML */}
+                <h3>Introduction</h3>
+                <p>{activeDoc.content}</p>
+
+                <div className="doc-actions">
+                  <button
+                    className="download-btn"
+                    onClick={() => downloadPdf(activeDoc)}
+                  >
+                    Download PDF
+                  </button>
+                  <button
+                    className="source-btn"
+                    onClick={() => viewInSource(activeDoc)}
+                  >
+                    View in Source
+                  </button>
+                </div>
+              </section>
+
+              <aside className="doc-related">
+                <h4>Related Documents</h4>
+                <div className="related-list">
+                  {mockSearchResults
+                    .filter((d) => d.id !== activeDoc.id)
+                    .map((d) => (
+                      <button
+                        key={d.id}
+                        className="related-item"
+                        onClick={() => openRelatedDoc(d.id)}
+                      >
+                        <div className="related-title">{d.title}</div>
+                        <div className="related-meta">{d.path} - {d.category}</div>
+                      </button>
+                    ))}
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

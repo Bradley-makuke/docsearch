@@ -1,6 +1,7 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"; 
-import SearchResults from "./SearchResults";
 import SearchHome from "./SearchHome";
+import SearchResults from "./SearchResults";
+
 function App(){
   return (
     <Router>
